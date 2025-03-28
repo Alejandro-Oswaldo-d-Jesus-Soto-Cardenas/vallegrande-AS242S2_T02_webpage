@@ -14,5 +14,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage/issues"
+  },
+  "homepage": "https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage#readme",
   "description": ""
 }
