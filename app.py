@@ -1,15 +1,12 @@
-from flask import flask
-#Inicializacion del FrameworkFlask
-app = flask(__name__)
+from flask import Flask, render_template
 
-#Programar mis rutas
-@app.route("/")
-def index():
-    return "Hola mundo"
+app = Flask(__name__, static_url_path='/static')
 
-#Ejecutar mi servidor
-if __name__ == "__main__":
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+if __name__ == '__main__':
     app.run(debug=True)
-
 
 
