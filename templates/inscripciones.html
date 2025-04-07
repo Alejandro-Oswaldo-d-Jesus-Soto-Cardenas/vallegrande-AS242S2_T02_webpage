@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripciones - Pasión por el Voley</title>
+    <link href="../static/css/style.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos adicionales para la tabla (ahora no se usarán directamente) */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .action-buttons .edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .action-buttons .delete {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <header style="background-color: #DC2626;" class="text-white">
+        <div class="container mx-auto p-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <div class="flex items-center">
+                        <img src="../static/imagenes/PASION POR EL VOLEY.jpg" alt="Logo" class="h-16 w-auto mr-4">
+                        <h1 class="text-xl font-bold">PASIÓN POR EL VOLEY</h1>
+                    </div>
+                </a>
+            </div>
+            <nav class="md:block">
+                <ul class="flex space-x-4">
+                    <li><a href="inscripciones.html" class="hover:text-gray-300 font-bold">Inscripciones</a></li>
+                    <li><a href="horarios.html" class="hover:text-gray-300 font-bold">Horarios</a></li>
+                    <li><a href="donde_estamos.html" class="hover:text-gray-300 font-bold">Dónde Estamos</a></li>
+                    <li><a href="contactanos.html" class="hover:text-gray-300 font-bold">Contáctanos</a></li>
+                    <li class="relative group">
+                        <a href="mas.html" class="dropbtn hover:text-gray-300 font-bold">Más</a>
+                        <div class="absolute hidden group-hover:block bg-white shadow-md rounded mt-2 w-48 text-gray-800">
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-bold">Galería</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-bold">Eventos</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 font-bold">Noticias</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mt-8 mb-4">Nueva Inscripción</h2>
+        <form id="nueva-inscripcion-form">
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                <input type="text" id="nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="Alejandro">
+            </div>
+            <div class="mb-4">
+                <label for="edad" class="block text-gray-700 text-sm font-bold mb-2">Edad:</label>
+                <input type="number" id="edad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="19">
+            </div>
+            <div class="mb-4">
+                <label for="categoria" class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
+                <select id="categoria" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="Infantil">Infantil</option>
+                    <option value="Juvenil">Juvenil</option>
+                    <option value="Adulto" selected>Adulto</option>
+                </select>
+            </div>
+            <button type="button" onclick="guardarInscripcion()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enviar</button>
+        </form>
+
+        <div id="editar-inscripcion-modal" class="hidden fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                    <h2 class="text-xl font-bold mb-4">Editar Inscripción</h2>
+                    <form id="editar-form">
+                        <div class="mb-4">
+                            <label for="editar-nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+                            <input type="text" id="editar-nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div class="mb-4">
+                            <label for="editar-edad" class="block text-gray-700 text-sm font-bold mb-2">Edad:</label>
+                            <input type="number" id="editar-edad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div class="mb-4">
+                            <label for="editar-categoria" class="block text-gray-700 text-sm font-bold mb-2">Categoría:</label>
+                            <select id="editar-categoria" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="Infantil">Infantil</option>
+                                <option value="Juvenil">Juvenil</option>
+                                <option value="Adulto">Adulto</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" onclick="cerrarModalEditar()">Cancelar</button>
+                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="actualizarInscripcion()">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: #DC2626;" class="text-white py-10 mt-8">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-xl font-semibold mb-2">Pasión por el Vóley</h4>
+                <p class="text-sm">San Vicente de Cañete, Perú</p>
+                <p class="text-sm mt-2">Forjando Campeones desde 2020</p>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-2">Enlaces</h4>
+                <ul class="space-y-1 text-sm">
+                    <li><a href="inscripciones.html" class="hover:underline">Inscripciones</a></li>
+                    <li><a href="horarios.html" class="hover:underline">Horarios</a></li>
+                    <li><a href="mas.html" class="hover:underline">Galería</a></li>
+                    <li><a href="contactanos.html" class="hover:underline">Contáctanos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-2">Contáctanos</h4>
+                <form class="space-y-2">
+                    <input type="email" placeholder="Tu correo" class="w-full p-2 rounded text-gray-800">
+                    <textarea placeholder="Mensaje" rows="2" class="w-full p-2 rounded text-gray-800"></textarea>
+                    <button type="submit" class="bg-white text-red-700 px-4 py-2 rounded hover:bg-gray-100">Enviar</button>
+                </form>
+            </div>
+            <div>
+                <h4 class="text-xl font-semibold mb-2">Síguenos</h4>
+                <div class="flex space-x-4 mt-2 text-2xl">
+                    <a href="#" aria-label="Facebook" class="hover:text-gray-300">📘</a>
+                    <a href="#" aria-label="Instagram" class="hover:text-gray-300">📸</a>
+                    <a href="#" aria-label="YouTube" class="hover:text-gray-300">📺</a>
+                    <a href="#" aria-label="WhatsApp" class="hover:text-gray-300">💬</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white mt-6 pt-4 text-center text-xs">
+            <p>&copy; 2024 Pasión por el Vóley. Todos los derechos reservados.</p>
+            <p><a href="#" class="underline hover:text-gray-300">Términos y condiciones</a> | <a href="#" class="underline hover:text-gray-300">Política de privacidad</a></p>
+            <p>Diseñado con ❤️ por el equipo de desarrollo de Pasión por el Vóley.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulación de datos (esto se reemplazaría con una llamada al servidor)
+        let inscripcionesData = [];
+        let nextId = 1;
+        let editingId = null;
+
+        function mostrarInscripciones() {
+            const listaInscripciones = document.getElementById('inscripciones-list');
+            listaInscripciones.innerHTML = '';
+            inscripcionesData.forEach(inscripcion => {
+                const row = listaInscripciones.insertRow();
+                row.insertCell().textContent = inscripcion.nombre;
+                row.insertCell().textContent = inscripcion.edad;
+                row.insertCell().textContent = inscripcion.categoria;
+                const actionsCell = row.insertCell();
+                actionsCell.classList.add('action-buttons');
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.classList.add('edit');
+                editButton.onclick = () => editarInscripcion(inscripcion.id);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Borrar';
+                deleteButton.classList.add('delete');
+                deleteButton.onclick = () => eliminarInscripcion(inscripcion.id);
+                actionsCell.appendChild(editButton);
+                actionsCell.appendChild(deleteButton);
+            });
+        }
+
+        function guardarInscripcion() {
+            const nombreInput = document.getElementById('nombre');
+            const edadInput = document.getElementById('edad');
+            const categoriaSelect = document.getElementById('categoria');
+
+            const nombre = nombreInput.value.trim();
+            const edad = parseInt(edadInput.value);
+            const categoria = categoriaSelect.value;
+
+            if (nombre && !isNaN(edad)) {
+                const nuevaInscripcion = {
+                    id: nextId++,
+                    nombre: nombre,
+                    edad: edad,
+                    categoria: categoria
+                };
+                inscripcionesData.push(nuevaInscripcion);
+                nombreInput.value = '';
+                edadInput.value = '';
+                categoriaSelect.value = 'Infantil'; // Resetear el select
+
+                // Redirigir al index.html después de guardar
+                window.location.href = 'index.html';
+
+                // Si quisieras seguir mostrando la lista (aunque dijiste que no), descomenta esto:
+                // mostrarInscripciones();
+            } else {
+                alert('Por favor, completa el nombre y la edad correctamente.');
+            }
+        }
+
+        function editarInscripcion(id) {
+            editingId = id;
+            const inscripcionAEditar = inscripcionesData.find(inscripcion => inscripcion.id === id);
+            if (inscripcionAEditar) {
+                document.getElementById('editar-nombre').value = inscripcionAEditar.nombre;
+                document.getElementById('editar-edad').value = inscripcionAEditar.edad;
+                document.getElementById('editar-categoria').value = inscripcionAEditar.categoria;
+                document.getElementById('editar-inscripcion-modal').classList.remove('hidden');
+            }
+        }
+
+        function actualizarInscripcion() {
+            if (editingId !== null) {
+                const editarNombreInput = document.getElementById('editar-nombre');
+                const editarEdadInput = document.getElementById('editar-edad');
+                const editarCategoriaSelect = document.getElementById('editar-categoria');
+
+                const nombre = editarNombreInput.value.trim();
+                const edad = parseInt(editarEdadInput.value);
+                const categoria = editarCategoriaSelect.value;
+
+                if (nombre && !isNaN(edad)) {
+                    const index = inscripcionesData.findIndex(inscripcion => inscripcion.id === editingId);
+                    if (index !== -1) {
+                        inscripcionesData[index] = { id: editingId, nombre: nombre, edad: edad, categoria: categoria };
+                        cerrarModalEditar();
+                        mostrarInscripciones();
+                        editingId = null;
+                    }
+                } else {
+                    alert('Por favor, completa el nombre y la edad correctamente en la edición.');
+                }
+            }
+        }
+
+        function eliminarInscripcion(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta inscripción?')) {
+                inscripcionesData = inscripcionesData.filter(inscripcion => inscripcion.id !== id);
+                mostrarInscripciones();
+            }
+        }
+
+        function cerrarModalEditar() {
+            document.getElementById('editar-inscripcion-modal').classList.add('hidden');
+            editingId = null;
+        }
+
+        // Mostrar las inscripciones iniciales al cargar la página (comentado como se solicitó)
+        // mostrarInscripciones();
+    </script>
+</body>
+</html>
