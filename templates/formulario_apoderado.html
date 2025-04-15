@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario del Apoderado - Pasión por el Voley</title>
+    <link rel="icon" href="../static/imagenes/PASION POR EL VOLEY.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #DC2626; /* Fondo rojo similar a la página principal */
+            color: white;
+            display: flex;
+            flex-direction: column; /* Para colocar el header encima del formulario */
+            justify-content: flex-start; /* Alinea el contenido al inicio (arriba) */
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Estilos del Header */
+        header {
+            background-color: #DC2626;
+            color: white;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ddd;
+        }
+
+        /* Estilos del Formulario */
+        .formulario-contenedor {
+            background-color: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px; /* Espacio entre el header y el formulario */
+        }
+
+        .formulario-titulo {
+            text-align: center;
+            color: #DC2626;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .formulario-grupo {
+            margin-bottom: 20px;
+        }
+
+        .formulario-grupo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .formulario-grupo input[type="text"],
+        .formulario-grupo input[type="date"],
+        .formulario-grupo input[type="email"],
+        .formulario-grupo input[type="number"],
+        .formulario-grupo select {
+            width: calc(100% - 12px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .formulario-grupo select {
+            appearance: none; /* Quitar estilos por defecto del select */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1.5em;
+            padding-right: 2.5em;
+        }
+
+        .formulario-terminos {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .formulario-terminos input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .formulario-terminos label {
+            font-weight: normal;
+            color: #555;
+        }
+
+        .formulario-boton {
+            background-color: #DC2626;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            width: auto; /* Ajustar ancho al contenido para los botones del segundo formulario */
+            box-sizing: border-box;
+            text-decoration: none; /* Para que el enlace parezca botón */
+            display: inline-block; /* Para poder ajustar el ancho */
+            text-align: center; /* Centrar texto dentro del botón/enlace */
+        }
+
+        .formulario-boton:hover {
+            background-color: darkred;
+        }
+
+        /* Estilos específicos basados en la imagen del formulario */
+        .formulario-grupo-doble {
+            display: flex;
+            gap: 20px;
+        }
+
+        .formulario-grupo-doble > div {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="../static/imagenes/PASION POR EL VOLEY.jpg" alt="Logo" class="logo">
+                <h1 class="logo-text">PASIÓN POR EL VOLEY</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="horarios.html">Horarios</a></li>
+                    <li><a href="donde_estamos.html">Dónde Estamos</a></li>
+                    <li><a href="contactanos.html">Contáctanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="formulario-contenedor">
+        <h2 class="formulario-titulo">Datos del Apoderado</h2>
+        <form>
+            <div class="formulario-grupo">
+                <label for="nombre_apoderado">Nombre del Apoderado:</label>
+                <input type="text" id="nombre_apoderado" name="nombre_apoderado">
+            </div>
+            <div class="formulario-grupo">
+                <label for="telefono_apoderado">Teléfono:</label>
+                <input type="text" id="telefono_apoderado" name="telefono_apoderado">
+            </div>
+            <div class="formulario-grupo">
+                <label for="correo_apoderado">Correo Electrónico:</label>
+                <input type="email" id="correo_apoderado" name="correo_apoderado">
+            </div>
+            <div class="formulario-grupo">
+                <label for="centro_salud">Centro de Salud:</label>
+                <input type="text" id="centro_salud" name="centro_salud">
+            </div>
+            <div class="formulario-grupo">
+                <label for="documento_identidad">Documento de Identidad:</label>
+                <select id="documento_identidad" name="documento_identidad">
+                    <option value="dni">DNI</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <input type="text" id="numero_documento" name="numero_documento" placeholder="Número de documento">
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <a href="formulario.html" class="formulario-boton" style="background-color: #f44336; width: auto;">Retroceder</a>
+                <a href="formulario_deportivo.html" class="formulario-boton">Siguiente</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -56,9 +56,48 @@
         .absolute a:hover {
             background-color: #f0f0f0; /* Color de fondo al hacer hover en los enlaces */
         }
+        .carousel-fade .carousel-item {
+            opacity: 0;
+            transition: opacity .6s ease-in-out;
+        }
+
+        .carousel-fade .carousel-item.active {
+            opacity: 1;
+        }
+
+        .carousel-fade .carousel-item-next,
+        .carousel-fade .carousel-item-prev {
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .carousel-fade .carousel-item-start.active,
+        .carousel-fade .carousel-item-end.active {
+            z-index: 1;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
+
+    <div id="loading-screen" class="fixed top-0 left-0 w-full h-full bg-red-500 flex justify-center items-center z-50">
+        <div class="loading-content flex flex-col items-center text-white">
+            <div class="relative w-32 h-32">
+                <div class="absolute top-0 left-0 w-full h-full rounded-full border-t-4 border-white border-opacity-30 animate-spin"></div>
+                <div class="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-white rounded-full flex items-center justify-center">
+                    <svg class="w-12 h-12 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+                        <path d="M16.29 8.71a1 1 0 0 1 0 1.41L13 13.41a1 1 0 0 1-1.41-1.41l3.29-3.29a1 1 0 0 1 1.41 0z" />
+                        <path d="M10.71 15.29a1 1 0 0 1 0-1.41L14 10.59a1 1 0 0 1 1.41 1.41l-3.29 3.29a1 1 0 0 1-1.41 0z" />
+                    </svg>
+                </div>
+                <div class="absolute top-1 right-1 w-8 h-8 bg-white rounded-full text-red-500 flex items-center justify-center font-bold text-sm animate-bounce-slow">
+                    🏐
+                </div>
+            </div>
+            <p class="mt-4 text-lg">Cargando la Pasión...</p>
+        </div>
+    </div>
 
     <header style="background-color: #DC2626;" class="text-white">
         <div class="container mx-auto p-4 flex items-center justify-between">
@@ -72,7 +111,8 @@
             </div>
             <nav class="hidden md:block">
                 <ul class="flex space-x-4">
-                    <li><a href="inscripciones.html" class="hover:text-gray-300 font-bold">Inscripciones</a></li>
+                    <li><a href="index.html" class="hover:text-gray-300 font-bold">Inicio</a></li>
+                    <li><a href="formulario.html" class="hover:text-gray-300 font-bold">Inscripciones</a></li>
                     <li><a href="horarios.html" class="hover:text-gray-300 font-bold">Horarios</a></li>
                     <li><a href="donde_estamos.html" class="hover:text-gray-300 font-bold">Dónde Estamos</a></li>
                     <li><a href="contactanos.html" class="hover:text-gray-300 font-bold">Contáctanos</a></li>
@@ -110,7 +150,7 @@
         </div>
     </header>
 
-    <section class="relative overflow-hidden py-24 md:py-32 lg:py-40 xl:py-48 bg-gradient-to-b from-black to-transparent shadow-lg">
+    <section id="main-content" class="relative overflow-hidden py-24 md:py-32 lg:py-40 xl:py-48 bg-gradient-to-b from-black to-transparent shadow-lg hidden">
         <div class="absolute inset-0 z-[-1]">
             <div id="carruselVoley" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner h-full">
@@ -219,7 +259,7 @@
             menuMobile.classList.toggle('hidden');
         });
     </script>
-    <script src="script.js"></script>
+    <script src="./js/loading.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
