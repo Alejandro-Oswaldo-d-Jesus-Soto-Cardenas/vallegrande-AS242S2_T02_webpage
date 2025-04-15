@@ -1,26 +1,6 @@
 {
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.3"
-  },
-  "name": "trabajos_tdw",
-  "version": "1.0.0",
-  "main": "tailwind.config.js",
-  "devDependencies": {
-    "tailwindcss": "^4.1.3"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage/issues"
-  },
-  "homepage": "https://github.com/Alejandro-Oswaldo-d-Jesus-Soto-Cardenas/vallegrande-AS242S2_T02_webpage#readme",
-  "description": ""
+    "@tailwindcss/vite": "^4.1.4",
+    "tailwindcss": "^4.1.4"
+  }
 }
